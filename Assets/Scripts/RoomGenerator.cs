@@ -24,6 +24,7 @@ public class RoomGenerator : MonoBehaviour {
 	public GameObject waterTile;
 	public GameObject rockTile;
 	public GameObject fishingBoat;
+	public GameObject warship;
 	public Count fishersCount = new Count(5,9);
 
 	private Transform boardHolder;
@@ -83,10 +84,13 @@ public class RoomGenerator : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () 
+	public void SetupScene (int level) 
 	{
 		BoardSetup ();
 		InitializeList ();
 		LayoutObjectAt (fishingBoat, fishersCount.minimum, fishersCount.maximum);
+
+		int enemiesCount = (int)Mathf.Log (level, 2f);
+		LayoutObjectAt (warship, enemiesCount, enemiesCount);
 	}
 }
