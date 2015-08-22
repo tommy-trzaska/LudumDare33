@@ -35,7 +35,7 @@ public class Shooting : MonoBehaviour {
 
 		if(shootPause >= firingRate && target != null)
 		{
-			if(Vector2.Distance (transform.position, target.position) < 5)
+			if(Vector2.Distance (transform.position, target.position) < 3)
 				Shoot ();
 		}
 	}

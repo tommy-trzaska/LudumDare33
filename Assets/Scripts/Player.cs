@@ -7,9 +7,6 @@ public class Player : Controller {
 	public int damage = 1;
 	public Text healthText;
 
-
-	private int points = 0;
-
 	private GameObject target;
 
 	void Awake ()
@@ -33,6 +30,7 @@ public class Player : Controller {
 
 		if(target && Input.GetMouseButtonDown (0))
 		{
+			GetComponent<Animator>().SetTrigger ("MonsterAttack");
 			target.GetComponent<Controller>().hp -= damage;
 
 			if(target.GetComponent<Controller>().hp <= 0)
