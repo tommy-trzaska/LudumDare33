@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance = null;
 	public RoomGenerator boardManager;
 	public GameObject player;
-	public int playerHealthPoints = 20;
+	public Text pointsText;
 	//public float levelStartDelay = 2f;
 
 	//private Text levelText;
@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour {
 	{
 		level++;
 		InitGame ();
+
+		if(pointsText == null)
+			pointsText = GameObject.Find ("PointsText").GetComponent<Text>();
+		
+		pointsText.text = "Level " + GameManager.instance.level;
 	}
 
 	void InitGame ()

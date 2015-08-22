@@ -24,8 +24,10 @@ public class RoomGenerator : MonoBehaviour {
 	public GameObject waterTile;
 	public GameObject rockTile;
 	public GameObject fishingBoat;
+	public GameObject fishPowerup;
 	public GameObject warship;
 	public Count fishersCount = new Count(5,9);
+	public Count powerupCount = new Count (0, 3);
 
 	private Transform boardHolder;
 	private List<Vector3> gridPositions = new List<Vector3>();
@@ -78,7 +80,6 @@ public class RoomGenerator : MonoBehaviour {
 		for (int i = 0; i < objectCount; i++)
 		{
 			Vector3 randomPosition = RandomPosition ();
-			//GameObject tileChoice = tileArray[Random.Range(0, tileArray.Length)];
 			Instantiate (tile, randomPosition, Quaternion.identity);
 		}
 	}
@@ -90,6 +91,7 @@ public class RoomGenerator : MonoBehaviour {
 		BoardSetup ();
 		InitializeList ();
 		LayoutObjectAt (fishingBoat, fishersCount.minimum, fishersCount.maximum);
+		LayoutObjectAt (fishPowerup, powerupCount.minimum, powerupCount.maximum);
 
 		int enemiesCount = (int)Mathf.Log (level, 2f);
 		LayoutObjectAt (warship, enemiesCount, enemiesCount);

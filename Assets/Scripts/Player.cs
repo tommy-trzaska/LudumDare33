@@ -1,16 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Player : Controller {
 
 	public int damage = 1;
+	public Text healthText;
+
+
+	private int points = 0;
 
 	private GameObject target;
 
 	void Awake ()
 	{
-		//hp = GameManager.instance.playerHealthPoints;
+
 		DontDestroyOnLoad (this);
+	}
+
+	void OnDisable ()
+	{
+		healthText.text = hp.ToString ();
 	}
 
 	void Update () 
@@ -30,8 +40,15 @@ public class Player : Controller {
 				target.gameObject.SetActive (false);
 				if(target.gameObject.tag == "Boat")
 					GameManager.instance.RemoveBoatFromList (target.gameObject);
+
+				target = null;
 			}
 		}
+
+		if(healthText == null)
+			healthText = GameObject.Find ("healthText").GetComponent<Text>();
+
+		healthText.text = hp.ToString ();
 	}
 
 	void OnCollisionStay2D (Collision2D col)
@@ -48,6 +65,15 @@ public class Player : Controller {
 		{
 			target = null;
 			Debug.Log ("target lost");
+		}
+	}
+	
+	void OnTriggerEnter2D (Collider2D other)
+	{
+		if(other.gameObject.tag == "Fish")
+		{
+			Destroy (other.gameObject);
+			hp++;
 		}
 	}
 }
