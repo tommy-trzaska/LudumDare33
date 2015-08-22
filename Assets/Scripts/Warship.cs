@@ -30,6 +30,7 @@ public class Warship : Controller {
 			if (hit.Length > 1)
 				return false;
 		}
+		else return false;
 
 		return true;
 	}

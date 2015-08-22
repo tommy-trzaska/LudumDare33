@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;
 	public RoomGenerator boardManager;
+	public GameObject player;
 	public int playerHealthPoints = 20;
 	//public float levelStartDelay = 2f;
 
@@ -14,7 +15,6 @@ public class GameManager : MonoBehaviour {
 	//private GameObject levelImage;
 	public int level = 1;
 	private List<GameObject> boats;
-	private Player player;
 
 	// Use this for initialization
 	void Awake () 
@@ -27,7 +27,8 @@ public class GameManager : MonoBehaviour {
 		DontDestroyOnLoad (gameObject);
 		boats = new List<GameObject> ();
 		boardManager = GetComponent<RoomGenerator> ();
-		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player>();
+		if (GameObject.FindGameObjectWithTag ("Player") == null)
+			Instantiate (player);
 		InitGame ();
 	}
 
@@ -76,7 +77,6 @@ public class GameManager : MonoBehaviour {
 		Debug.Log (boats.Count);
 		if (boats.Count <= 0)
 		{
-			playerHealthPoints = player.hp;
 			Application.LoadLevel (Application.loadedLevel);
 		}
 	}

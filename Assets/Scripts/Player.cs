@@ -9,7 +9,8 @@ public class Player : Controller {
 
 	void Awake ()
 	{
-		hp = GameManager.instance.playerHealthPoints;
+		//hp = GameManager.instance.playerHealthPoints;
+		DontDestroyOnLoad (this);
 	}
 
 	void Update () 
@@ -33,7 +34,7 @@ public class Player : Controller {
 		}
 	}
 
-	void OnCollisionEnter2D (Collision2D col)
+	void OnCollisionStay2D (Collision2D col)
 	{
 		if(col.collider.gameObject.tag == "Boat" || col.collider.gameObject.tag == "Warship")
 		{
