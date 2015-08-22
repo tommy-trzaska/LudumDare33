@@ -7,18 +7,14 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;
 	public RoomGenerator boardManager;
-	//public int playerFoodPoints = 100;
-	//public float turnDelay = 0.1f;
+	public int playerHealthPoints = 20;
 	//public float levelStartDelay = 2f;
-	//[HideInInspector] public bool playersTurn = true;
 
 	//private Text levelText;
 	//private GameObject levelImage;
-	[SerializeField]
-	private int level = 1;
-	//private List<Enemy> enemies;
-	//private bool enemiesMoving;
-	//private bool doingSetup;
+	public int level = 1;
+	private List<GameObject> boats;
+	private Player player;
 
 	// Use this for initialization
 	void Awake () 
@@ -29,8 +25,9 @@ public class GameManager : MonoBehaviour {
 			Destroy (gameObject);
 
 		DontDestroyOnLoad (gameObject);
-		//enemies = new List<Enemy> ();
+		boats = new List<GameObject> ();
 		boardManager = GetComponent<RoomGenerator> ();
+		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player>();
 		InitGame ();
 	}
 
@@ -50,8 +47,8 @@ public class GameManager : MonoBehaviour {
 		//levelImage.SetActive (true);
 		//Invoke ("HideImage", levelStartDelay);
 
-		//enemies.Clear ();
-		boardManager.SetupScene (level);
+		boats.Clear ();
+		boardManager.SetupScene ();
 	}
 
 	private void HideImage ()
@@ -67,9 +64,20 @@ public class GameManager : MonoBehaviour {
 		enabled = false;
 	}
 
-	// Update is called once per frame
-	void Update () 
+	public void AddBoatToList (GameObject boat)
 	{
+		boats.Add (boat);
+		Debug.Log (boat.name);
+	}
 
+	public void RemoveBoatFromList (GameObject boat)
+	{
+		boats.Remove (boat);
+		Debug.Log (boats.Count);
+		if (boats.Count <= 0)
+		{
+			playerHealthPoints = player.hp;
+			Application.LoadLevel (Application.loadedLevel);
+		}
 	}
 }

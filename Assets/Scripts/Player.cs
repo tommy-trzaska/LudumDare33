@@ -7,6 +7,11 @@ public class Player : Controller {
 
 	private GameObject target;
 
+	void Awake ()
+	{
+		hp = GameManager.instance.playerHealthPoints;
+	}
+
 	void Update () 
 	{
 		float vertical = Input.GetAxis ("Vertical") * speed * Time.deltaTime;
@@ -22,13 +27,15 @@ public class Player : Controller {
 			if(target.GetComponent<Controller>().hp <= 0)
 			{
 				target.gameObject.SetActive (false);
+				if(target.gameObject.tag == "Boat")
+					GameManager.instance.RemoveBoatFromList (target.gameObject);
 			}
 		}
 	}
 
 	void OnCollisionEnter2D (Collision2D col)
 	{
-		if(col.collider.gameObject.tag == "Boat")
+		if(col.collider.gameObject.tag == "Boat" || col.collider.gameObject.tag == "Warship")
 		{
 			target = col.collider.gameObject;
 		}

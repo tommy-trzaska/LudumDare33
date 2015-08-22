@@ -84,8 +84,9 @@ public class RoomGenerator : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	public void SetupScene (int level) 
+	public void SetupScene () 
 	{
+		int level = GameManager.instance.level;
 		BoardSetup ();
 		InitializeList ();
 		LayoutObjectAt (fishingBoat, fishersCount.minimum, fishersCount.maximum);
