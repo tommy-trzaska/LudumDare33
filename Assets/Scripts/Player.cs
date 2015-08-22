@@ -28,18 +28,21 @@ public class Player : Controller {
 
 		GetComponent<Rigidbody2D> ().MovePosition (transform.position + direction);
 
-		if(target && Input.GetMouseButtonDown (0))
+		if(Input.GetMouseButtonDown (0))
 		{
 			GetComponent<Animator>().SetTrigger ("MonsterAttack");
-			target.GetComponent<Controller>().hp -= damage;
-
-			if(target.GetComponent<Controller>().hp <= 0)
+			if(target)
 			{
-				target.gameObject.SetActive (false);
-				if(target.gameObject.tag == "Boat")
-					GameManager.instance.RemoveBoatFromList (target.gameObject);
+				target.GetComponent<Controller>().hp -= damage;
 
-				target = null;
+				if(target.GetComponent<Controller>().hp <= 0)
+				{
+					target.gameObject.SetActive (false);
+					if(target.gameObject.tag == "Boat")
+						GameManager.instance.RemoveBoatFromList (target.gameObject);
+
+					target = null;
+				}
 			}
 		}
 

@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour {
 			gameObject.SetActive (false);
 			if(other.gameObject.GetComponent<Player>().hp <=0)
 			{
-				Destroy (other.gameObject);
+				other.gameObject.SetActive (false);
 				GameManager.instance.GameOver ();
 			}
 		}

@@ -18,6 +18,11 @@ public class Warship : Controller {
 		if(CheckPath ())
 		{
 			transform.Translate ((target.position - transform.position).normalized * speed * Time.deltaTime);
+
+			if((target.position - transform.position).normalized.x > 0)
+				transform.localScale = new Vector3(-1, 1, 1);
+			else
+				transform.localScale = Vector3.one;
 		}
 	}
 

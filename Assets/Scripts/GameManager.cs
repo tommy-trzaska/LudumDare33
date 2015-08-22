@@ -7,12 +7,10 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;
 	public RoomGenerator boardManager;
+	public GameObject playerPrefab;
 	public GameObject player;
 	public Text pointsText;
-	//public float levelStartDelay = 2f;
 
-	//private Text levelText;
-	//private GameObject levelImage;
 	public int level = 1;
 	private List<GameObject> boats;
 
@@ -28,7 +26,9 @@ public class GameManager : MonoBehaviour {
 		boats = new List<GameObject> ();
 		boardManager = GetComponent<RoomGenerator> ();
 		if (GameObject.FindGameObjectWithTag ("Player") == null)
-			Instantiate (player);
+		{
+			player = (GameObject)Instantiate (playerPrefab);
+		}
 		InitGame ();
 	}
 
@@ -45,28 +45,15 @@ public class GameManager : MonoBehaviour {
 
 	void InitGame ()
 	{
-		//doingSetup = true;
-
-		//levelImage = GameObject.Find ("LevelImage");
-		//levelText = GameObject.Find ("LevelText").GetComponent<Text>();
-		//levelText.text = "Day " + level;
-		//levelImage.SetActive (true);
-		//Invoke ("HideImage", levelStartDelay);
+		MenuMenager.instance.menuScreen.SetActive (false);
 
 		boats.Clear ();
 		boardManager.SetupScene ();
 	}
 
-	private void HideImage ()
-	{
-		//levelImage.SetActive (false);
-		//doingSetup = false;
-	}
-
 	public void GameOver ()
 	{
-		//levelText.text = "After " + level + " days, you starved.";
-		//levelImage.SetActive (true);
+		MenuMenager.instance.GameOverScreen.SetActive (true);
 		enabled = false;
 	}
 
