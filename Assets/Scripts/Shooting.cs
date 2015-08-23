@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Shooting : MonoBehaviour {
 
+	public AudioClip shootSound;
 	public GameObject bulletPrefab;
 	public int bulletsCount = 20;
 	public float firingRate = 0.5f;
@@ -48,7 +49,7 @@ public class Shooting : MonoBehaviour {
 		{
 			if(!bullet.activeInHierarchy)
 			{
-				Debug.Log ("Shoot");
+				GetComponent<AudioSource>().PlayOneShot (shootSound);
 				bullet.SetActive (true);
 				bullet.GetComponent<Bullet>().direction = (target.position - transform.position).normalized;
 				bullet.transform.position = transform.position;

@@ -16,10 +16,8 @@ Platform assembly: E:\Tommy\Unity projects\LudumDare33\LD33\Feed The Cracken [PC
 Loading E:\Tommy\Unity projects\LudumDare33\LD33\Feed The Cracken [PC]\Feed The Cracken_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: E:\Tommy\Unity projects\LudumDare33\LD33\Feed The Cracken [PC]\Feed The Cracken_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading E:\Tommy\Unity projects\LudumDare33\LD33\Feed The Cracken [PC]\Feed The Cracken_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.202 seconds
+- Completed reload, in  0.183 seconds
 desktop: 1366x768 59Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-Platform assembly: E:\Tommy\Unity projects\LudumDare33\LD33\Feed The Cracken [PC]\Feed The Cracken_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: E:\Tommy\Unity projects\LudumDare33\LD33\Feed The Cracken [PC]\Feed The Cracken_Data\Managed\System.dll (this message is harmless)

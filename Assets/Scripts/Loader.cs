@@ -13,7 +13,7 @@ public class Loader : MonoBehaviour {
 
 	public void StartGame ()
 	{
-		//MenuManager.instance.menuScreen.SetActive (false);
+		MenuMenager.instance.menuScreen.SetActive (false);
 		if (GameManager.instance == null)
 		{
 			Instantiate (gameManager);

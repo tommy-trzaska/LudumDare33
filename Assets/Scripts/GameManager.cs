@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour {
 	public void GameOver ()
 	{
 		MenuMenager.instance.GameOverScreen.SetActive (true);
+		boardManager.boardHolder.gameObject.SetActive (false);
 		enabled = false;
 	}
 

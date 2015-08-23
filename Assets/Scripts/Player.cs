@@ -6,6 +6,7 @@ public class Player : Controller {
 
 	public int damage = 1;
 	public Text healthText;
+	public AudioClip splash;
 
 	private GameObject target;
 
@@ -31,16 +32,22 @@ public class Player : Controller {
 		if(Input.GetMouseButtonDown (0))
 		{
 			GetComponent<Animator>().SetTrigger ("MonsterAttack");
+			GetComponent<AudioSource>().PlayOneShot (splash);
 			if(target)
 			{
 				target.GetComponent<Controller>().hp -= damage;
 
 				if(target.GetComponent<Controller>().hp <= 0)
 				{
-					target.gameObject.SetActive (false);
 					if(target.gameObject.tag == "Boat")
+					{
 						GameManager.instance.RemoveBoatFromList (target.gameObject);
-
+						target.GetComponent<Animator>().SetTrigger ("sink");
+					}
+					else
+						target.GetComponent<Animator>().SetTrigger ("warshipSink");
+					target.GetComponent<BoxCollider2D>().enabled = false;
+					Destroy(target.gameObject, 0.5f);
 					target = null;
 				}
 			}

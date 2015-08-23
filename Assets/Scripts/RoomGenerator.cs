@@ -29,7 +29,7 @@ public class RoomGenerator : MonoBehaviour {
 	public Count fishersCount = new Count(5,9);
 	public Count powerupCount = new Count (0, 3);
 
-	private Transform boardHolder;
+	public Transform boardHolder;
 	private List<Vector3> gridPositions = new List<Vector3>();
 	
 	void InitializeList ()
@@ -49,9 +49,9 @@ public class RoomGenerator : MonoBehaviour {
 	{
 		boardHolder = new GameObject ("Board").transform;
 		
-		for (int x = -1; x < columns + 1; x++)
+		for (int x = -2; x < columns + 2; x++)
 		{
-			for (int y = -1; y < rows + 1; y++)
+			for (int y = -2; y < rows + 2; y++)
 			{
 				GameObject instance = (GameObject)Instantiate(waterTile, new Vector3(x * 1.28f,y * 1.28f,0), Quaternion.identity);
 				instance.transform.parent = boardHolder;
@@ -80,7 +80,8 @@ public class RoomGenerator : MonoBehaviour {
 		for (int i = 0; i < objectCount; i++)
 		{
 			Vector3 randomPosition = RandomPosition ();
-			Instantiate (tile, randomPosition, Quaternion.identity);
+			GameObject rTile = (GameObject)Instantiate (tile, randomPosition, Quaternion.identity);
+			rTile.transform.parent = boardHolder;
 		}
 	}
 
